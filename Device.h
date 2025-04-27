@@ -161,14 +161,18 @@ SoftSerial SoftSerialNFC(2, 1,false); // RX, TX
 
 #if defined(SerialNFC)
 #pragma message "使用 UART 连接 PN532"
+#define NFC_INTERFACE_HSU
 #include <PN532_HSU.h>
+#include <PN532_HSU.cpp>
 PN532_HSU pn532(SerialNFC);
 #else
 #pragma message "使用 SWUART 连接 PN532"
 #if defined(__AVR_ATtiny85__)
 #include <PN532_SWHSU_Tiny85.h>
 #else
+#define NFC_INTERFACE_SWHSU
 #include <PN532_SWHSU.h>
+#include <PN532_SWHSU.cpp>
 #endif
 PN532_SWHSU pn532(SoftSerialNFC);
 #define SerialNFC SoftSerialNFC
