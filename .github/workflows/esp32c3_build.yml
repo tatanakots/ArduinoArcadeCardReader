@@ -1,0 +1,51 @@
+name: ESP32-C3 Firmware Build
+
+on:
+  push:  # 任何分支的推送都可以触发
+    branches:
+      - '**'  # 匹配所有分支
+  pull_request:
+    branches:
+      - '**'  # 匹配所有 PR
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 使用 Ubuntu 环境来构建
+
+    steps:
+    # 步骤 1：检出代码
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 步骤 2：设置 Arduino CLI
+    - name: Set up Arduino CLI
+      run: |
+        curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+        export PATH=$PATH:$HOME/Arduino/hardware/tools/avr/bin
+        arduino-cli core update-index
+        arduino-cli core install esp32:esp32
+
+    # 步骤 3：安装特定版本的 PN532 库
+    - name: Install specific PN532 library version
+      run: |
+        git clone --branch master https://github.com/tatanakots/PN532.git
+        cd PN532
+        arduino-cli lib install ./PN532
+
+    # 步骤 4：安装 FastLED 库
+    - name: Install FastLED library
+      run: |
+        arduino-cli lib install "FastLED"
+
+    # 步骤 5：编译固件
+    - name: Compile ESP32-C3 firmware
+      run: |
+        arduino-cli compile --fqbn esp32:esp32:esp32c3 ./ArduinoArcadeCardReader.ino
+
+    # 步骤 6：上传编译产物 (固件二进制文件)
+    - name: Upload firmware binary as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: esp32c3-firmware
+        path: ./ArduinoArcadeCardReader/build/esp32.esp32.esp32c3/*  # 根据实际路径修改
+
