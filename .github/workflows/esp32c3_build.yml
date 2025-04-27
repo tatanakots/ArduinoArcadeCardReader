@@ -28,8 +28,8 @@ jobs:
     - name: Install specific PN532 library version
       run: |
         git clone https://github.com/tatanakots/PN532.git
-        mkdir -p ~/.arduino15/libraries/PN532
-        cp -r ./PN532 ~/.arduino15/libraries/PN532
+        mkdir -p ~/Arduino/libraries/PN532
+        cp -r ./PN532 ~/Arduino/libraries/PN532
 
     # 步骤 4：安装 FastLED 库
     - name: Install FastLED library
