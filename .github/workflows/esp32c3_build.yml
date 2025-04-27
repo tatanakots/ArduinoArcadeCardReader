@@ -27,9 +27,7 @@ jobs:
     # 步骤 3：安装特定版本的 PN532 库
     - name: Install specific PN532 library version
       run: |
-        git clone https://github.com/tatanakots/PN532.git
-        mkdir -p ~/Arduino/libraries/PN532
-        cp -r ./PN532 ~/Arduino/libraries/PN532
+        ./bin/arduino-cli lib install "https://github.com/tatanakots/PN532/archive/refs/heads/arduino.zip"
 
     # 步骤 4：安装 FastLED 库
     - name: Install FastLED library
