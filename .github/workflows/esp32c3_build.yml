@@ -45,6 +45,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: esp32c3-firmware
-        path: ./build/esp32.esp32.esp32c3/*
+        path: ./build/esp32.esp32.esp32c3/*.bin
         if-no-files-found: error
 
