@@ -21,31 +21,29 @@ jobs:
     - name: Set up Arduino CLI
       run: |
         curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-        export PATH=$PATH:$HOME/Arduino/hardware/tools/avr/bin
-        arduino-cli core update-index
-        arduino-cli core install esp32:esp32
+        ./bin/arduino-cli core update-index
+        ./bin/arduino-cli core install esp32:esp32
 
     # 步骤 3：安装特定版本的 PN532 库
     - name: Install specific PN532 library version
       run: |
         git clone --branch master https://github.com/tatanakots/PN532.git
-        cd PN532
-        arduino-cli lib install ./PN532
+        ./bin/arduino-cli lib install ./PN532
 
     # 步骤 4：安装 FastLED 库
     - name: Install FastLED library
       run: |
-        arduino-cli lib install "FastLED"
+        ./bin/arduino-cli lib install "FastLED"
 
     # 步骤 5：编译固件
     - name: Compile ESP32-C3 firmware
       run: |
-        arduino-cli compile --fqbn esp32:esp32:esp32c3 ./ArduinoArcadeCardReader.ino
+        ./bin/arduino-cli compile --fqbn esp32:esp32:esp32c3 ./ArduinoArcadeCardReader.ino
 
     # 步骤 6：上传编译产物 (固件二进制文件)
     - name: Upload firmware binary as artifact
       uses: actions/upload-artifact@v4
       with:
         name: esp32c3-firmware
-        path: ./ArduinoArcadeCardReader/build/esp32.esp32.esp32c3/*  # 根据实际路径修改
+        path: ./build/esp32.esp32.esp32c3/*  # 根据实际路径修改
 
