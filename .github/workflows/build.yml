@@ -100,7 +100,7 @@ jobs:
 
     - name: Compile Air001 firmware
       run: |
-        ./bin/arduino-cli compile --fqbn AirM2M:AirMCU:Air001Dev --build-path ./build/AirM2M.AirMCU.Air001Dev/ ./ArduinoArcadeCardReader.ino
+        ./bin/arduino-cli compile --fqbn AirM2M:AirMCU:Air001Dev -v -Os --build-path ./build/AirM2M.AirMCU.Air001Dev/ ./ArduinoArcadeCardReader.ino
 
     - name: Upload firmware binary as artifact
       uses: actions/upload-artifact@v4
