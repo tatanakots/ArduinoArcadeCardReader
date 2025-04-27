@@ -19,7 +19,8 @@ jobs:
     - name: Set up Arduino CLI
       run: |
         curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-        ./bin/arduino-cli core update-index --additional-urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+        ./bin/arduino-cli config init --additional-urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+        ./bin/arduino-cli core update-index
         ./bin/arduino-cli core install esp32:esp32
 
     - name: Install specific PN532 library version
@@ -84,7 +85,8 @@ jobs:
     - name: Set up Arduino CLI
       run: |
         curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-        ./bin/arduino-cli core update-index --additional-urls https://github.com/Air-duino/Arduino-pack-json-ci/releases/download/Nightly/package_air_index.json
+        ./bin/arduino-cli config init --additional-urls https://github.com/Air-duino/Arduino-pack-json-ci/releases/download/Nightly/package_air_index.json
+        ./bin/arduino-cli core update-index
         ./bin/arduino-cli core install AirM2M:AirMCU
 
     - name: Install specific PN532 library version
