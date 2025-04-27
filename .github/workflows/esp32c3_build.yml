@@ -38,12 +38,13 @@ jobs:
     # 步骤 5：编译固件
     - name: Compile ESP32-C3 firmware
       run: |
-        ./bin/arduino-cli compile --fqbn esp32:esp32:esp32c3 ./ArduinoArcadeCardReader.ino
+        ./bin/arduino-cli compile --fqbn esp32:esp32:esp32c3 --build-path ./build/esp32.esp32.esp32c3/ ./ArduinoArcadeCardReader.ino
 
     # 步骤 6：上传编译产物 (固件二进制文件)
     - name: Upload firmware binary as artifact
       uses: actions/upload-artifact@v4
       with:
         name: esp32c3-firmware
-        path: ./build/esp32.esp32.esp32c3/*  # 根据实际路径修改
+        path: ./build/esp32.esp32.esp32c3/*
+        if-no-files-found: error
 
