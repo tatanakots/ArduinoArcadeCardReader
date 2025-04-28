@@ -1,8 +1,3 @@
-#define SEGA_MODE 1
-#define SPICE_MODE 1
-#define NAMCO_MODE 1
-#define Other_MODE 1
-
 #include "Device.h"
 #if defined (SEGA_MODE)
 #include "Sega_Aime_Reader.h"

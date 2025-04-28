@@ -11,6 +11,10 @@
 #if defined(ARDUINO_SAMD_ZERO)
 #define CDC
 #pragma message "当前的开发板是 SAMD21 "
+#define SEGA_MODE 1
+#define SPICE_MODE 1
+#define NAMCO_MODE 1
+#define Other_MODE 1
 //#include "wiring_private.h"
 #define SerialDevice Serial
 #define SPICEAPI_INTERFACE Serial
@@ -28,6 +32,10 @@
 
 #elif defined(ESP8266)
 #pragma message "当前的开发板是 ESP8266"
+#define SEGA_MODE 1
+#define SPICE_MODE 1
+#define NAMCO_MODE 1
+#define Other_MODE 1
 #define SerialDevice Serial
 #define SPICEAPI_INTERFACE Serial
 #define NUM_LEDS 11
@@ -40,6 +48,10 @@ SoftwareSerial SoftSerialNFC(4, 5); // RX, TX
 
 #elif defined(CONFIG_IDF_TARGET_ESP32)
 #pragma message "当前的开发板是 ESP32"
+#define SEGA_MODE 1
+#define SPICE_MODE 1
+#define NAMCO_MODE 1
+#define Other_MODE 1
 #define SerialDevice Serial
 #define SPICEAPI_INTERFACE Serial
 #define NUM_LEDS 11
@@ -50,6 +62,8 @@ SoftwareSerial SoftSerialNFC(1, 2); // RX, TX
 
 #elif defined(AIR001xx)
 #pragma message "当前的开发板是 AIR001"
+#define SEGA_MODE 1
+#define Other_MODE 1
 #define SerialDevice Serial
 #define SPICEAPI_INTERFACE Serial
 //LED灯的个数
@@ -65,6 +79,10 @@ HardwareSerial SerialPN532(PF0, PF1);
 //for f103c8/B
 #define EEPROM_PAGE_SIZE        (uint16)0x400  /* Page size = 1KByte */
 #pragma message "当前的开发板是 STM32F103C8"
+#define SEGA_MODE 1
+#define SPICE_MODE 1
+#define NAMCO_MODE 1
+#define Other_MODE 1
 #define FLASH_SIZE 64
 
 //for f103c6
@@ -93,6 +111,10 @@ HardwareSerial SerialPN532(PF0, PF1);
 #elif defined(ARDUINO_GENERIC_F072C8TX)
 #define CDC
 #pragma message "当前的开发板是 STM32F072C8"
+#define SEGA_MODE 1
+#define SPICE_MODE 1
+#define NAMCO_MODE 1
+#define Other_MODE 1
 //Generic STM32F1 series
 #define SerialDevice Serial
 #define SPICEAPI_INTERFACE Serial
@@ -115,6 +137,10 @@ HardwareSerial Serial1(PB_7, PB_6);
 #elif defined(ARDUINO_ARCH_RP2040)
 #define CDC
 #pragma message "当前的开发板是 RP2040"
+#define SEGA_MODE 1
+#define SPICE_MODE 1
+#define NAMCO_MODE 1
+#define Other_MODE 1
 #define SerialDevice Serial
 #define SPICEAPI_INTERFACE Serial
 #define BOARD_VISION 8
@@ -132,6 +158,10 @@ HardwareSerial Serial1(PB_7, PB_6);
 #elif defined(CONFIG_IDF_TARGET_ESP32C3)
 #define CDC 1
 #pragma message "当前的开发板是 ESP32C3"
+#define SEGA_MODE 1
+#define SPICE_MODE 1
+#define NAMCO_MODE 1
+#define Other_MODE 1
 #define SerialDevice Serial
 #define sysled 2
 #define nfccommled 3
@@ -144,6 +174,10 @@ HardwareSerial Serial1(PB_7, PB_6);
 
 #elif defined(__AVR_ATtiny85__)
 #pragma message "当前的开发板是 ATtiny85"
+#define SEGA_MODE 1
+#define SPICE_MODE 1
+#define NAMCO_MODE 1
+#define Other_MODE 1
 #define SerialDevice Serial
 #define SPICEAPI_INTERFACE Serial
 #define NUM_LEDS 11

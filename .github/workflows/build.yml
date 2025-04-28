@@ -34,7 +34,7 @@ jobs:
 
     - name: Compile ESP32-C3 firmware
       run: |
-        ./bin/arduino-cli compile --fqbn esp32:esp32:esp32c3 --build-path ./build/esp32.esp32.esp32c3/ ./ArduinoArcadeCardReader.ino
+        ./bin/arduino-cli compile --fqbn esp32:esp32:esp32c3 --build-property "build.extra_flags=-DUSB_CDC_ON_BOOT" --build-path ./build/esp32.esp32.esp32c3/ ./ArduinoArcadeCardReader.ino
 
     - name: Upload firmware binary as artifact
       uses: actions/upload-artifact@v4
@@ -100,7 +100,7 @@ jobs:
 
     - name: Compile Air001 firmware
       run: |
-        ./bin/arduino-cli compile --fqbn AirM2M:AirMCU:Air001Dev --build-property "build.extra_flags=-Os" --build-path ./build/AirM2M.AirMCU.Air001Dev/ ./ArduinoArcadeCardReader.ino
+        ./bin/arduino-cli compile --fqbn AirM2M:AirMCU:Air001Dev --build-path ./build/AirM2M.AirMCU.Air001Dev/ ./ArduinoArcadeCardReader.ino
 
     - name: Upload firmware binary as artifact
       uses: actions/upload-artifact@v4
