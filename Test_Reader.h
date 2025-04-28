@@ -9,7 +9,6 @@ extern uint8_t switch_flag;
 
 void Test_Reader_Loop()
 {
-  LED_show(255,255,0);
   uint8_t cmd_switch = 0;
   while(SerialDevice.available()){
     uint8_t c = SerialDevice.read();
@@ -132,4 +131,43 @@ void Test_Reader_Loop()
     }
     SerialDevice.println("Didn't find card");
     delay(1000);
+}
+
+void Test_Reader_Setup(){
+  #ifndef CDC
+  if ((system_setting[0] & 0b10)){
+    SerialDevice.begin(115200);
+  }
+  else{
+    SerialDevice.begin(38400);
+  }
+  #endif
+  if(system_setting[0] & 0b1000)
+  {
+    for(uint8_t i = 0;i<8;i++)
+    {
+      mapped_card_IDm[i] = EEPROM.read(i+4);
+    }
+    for(uint8_t i = 0;i<10;i++)
+    {
+      card_reflect.block2[i+6] = EEPROM.read(i+12);
+    }
+  }
+  LED_Init();
+  //afio_remap(AFIO_REMAP_USART1); 
+  nfc.begin();
+  while (!nfc.getFirmwareVersion()) {
+    delay(500);
+    SerialDevice.println("error");
+    LED_show(255,0,0);
+  }
+  #if defined(CONFIG_IDF_TARGET_ESP32C3)
+  digitalWrite(nfccommled, 1);
+  #endif
+  nfc.setPassiveActivationRetries(0x10);
+  nfc.SAMConfig();
+  memset(req.bytes, 0, sizeof(req.bytes));
+  memset(res.bytes, 0, sizeof(res.bytes));
+  LED_show(255,255,0);
+  delay(1);
 }

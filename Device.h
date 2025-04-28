@@ -232,7 +232,7 @@ PN532 nfc(pn532);
 //23:当前使用的系统模式：0为SEGA模式，1为SpiceTool模式，2为Namco模式，3为Test模式，4为RAW直通模式
 uint8_t system_setting[3] = {0};
 uint8_t mapped_card_IDm[8] = {0};
-const uint8_t default_system_setting[3] = {0b00000100,128,10};
+const uint8_t default_system_setting[3] = {0b00000110,128,10};
 extern uint8_t system_mode;
 
 void EEPROM_get_sysconfig(){

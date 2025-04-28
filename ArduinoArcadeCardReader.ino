@@ -100,6 +100,16 @@ void loop() {
         switch_flag = 0;
         break;
       #endif
+      #if defined (Other_MODE)
+      case 3:
+        Test_Reader_Setup();
+        switch_flag = 0;
+        break;
+      case 4:
+        RAW_Setup();
+        switch_flag = 0;
+        break;
+      #endif
       default:
         Sega_Mode_Init();
         switch_flag = 0;
