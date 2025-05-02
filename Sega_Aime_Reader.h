@@ -664,6 +664,9 @@ void Sega_Mode_Loop(){
         break;
     
      case CMD_WRITE_EEPROM:
+        if(!req.eeprom_data[0] & 0b100){
+            LED_show(0,0,0);
+        }
         system_setting[0] = req.eeprom_data[0];
         system_setting[1] = req.eeprom_data[1];
         for(uint8_t i = 0;i<8;i++)
